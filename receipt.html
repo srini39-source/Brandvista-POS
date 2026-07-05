@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Receipt Preview · BrandVista POS</title>
+<link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div class="sidebar-backdrop no-print" data-menu-toggle></div>
+<div class="app-shell">
+
+  <aside class="sidebar no-print">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-mark">BV</div>
+      <div class="sidebar-brand-text">BrandVista <span>POS</span></div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Overview</div>
+      <a href="dashboard.html" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+        Dashboard
+      </a>
+      <div class="sidebar-section-label">Sales</div>
+      <a href="pos.html" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1.4"/><circle cx="18" cy="21" r="1.4"/><path d="M2.5 3h2.6l2.6 12.6a2 2 0 0 0 2 1.6h8a2 2 0 0 0 2-1.5l1.6-7.2H6.4"/></svg>
+        POS Billing
+      </a>
+      <a href="sales-history.html" class="sidebar-link active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>
+        Sales History
+      </a>
+      <div class="sidebar-section-label">Catalog</div>
+      <a href="products.html" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7 12 3 4 7l8 4 8-4Z"/><path d="M4 7v10l8 4 8-4V7"/><path d="M12 11v10"/></svg>
+        Products
+      </a>
+      <a href="categories.html" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>
+        Categories
+      </a>
+      <div class="sidebar-section-label">People</div>
+      <a href="customers.html" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Customers
+      </a>
+      <a href="suppliers.html" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="7" width="15" height="13" rx="1.5"/><path d="M16 11h4l3 3v6h-7"/><circle cx="5.5" cy="20.5" r="1.6"/><circle cx="18.5" cy="20.5" r="1.6"/></svg>
+        Suppliers
+      </a>
+      <div class="sidebar-section-label">Insights</div>
+      <a href="reports.html" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6"/><rect x="12.5" y="8" width="3" height="10"/><rect x="18" y="5" width="3" height="13"/></svg>
+        Reports
+      </a>
+      <div class="sidebar-section-label">System</div>
+      <a href="settings.html" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="profile.html" class="sidebar-user">
+        <div class="sidebar-avatar" data-user-initials>RB</div>
+        <div><div class="sidebar-user-name" data-user-name>Riteesh B.</div><div class="sidebar-user-role">Store Owner</div></div>
+      </a>
+    </div>
+  </aside>
+
+  <div class="main-col">
+    <header class="topbar no-print">
+      <div class="flex items-center gap-16">
+        <button class="menu-toggle" data-menu-toggle aria-label="Open menu">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="topbar-title">
+          <h1>Receipt Preview</h1>
+          <p>Order #10433 · 05 Jul 2026, 12:08 PM</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <a href="sales-history.html" class="btn btn-secondary">Back to Sales</a>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="receipt-page-wrap">
+        <div class="receipt" id="receiptCard">
+          <div class="receipt-center">
+            <div class="receipt-logo">BV</div>
+            <h3>BrandVista General Store</h3>
+            <p class="muted-line">42 Market Street, Koramangala</p>
+            <p class="muted-line">Bengaluru, KA 560034</p>
+            <p class="muted-line">GSTIN: 29ABCDE1234F1Z5</p>
+          </div>
+
+          <div class="receipt-dashed"></div>
+
+          <div class="receipt-row"><span>Order No.</span><span>#10433</span></div>
+          <div class="receipt-row"><span>Date</span><span>05 Jul 2026, 12:08 PM</span></div>
+          <div class="receipt-row"><span>Cashier</span><span>Riteesh B.</span></div>
+          <div class="receipt-row"><span>Customer</span><span>Walk-in Customer</span></div>
+
+          <div class="receipt-dashed"></div>
+
+          <div class="receipt-items">
+            <div class="receipt-row"><span>2 × Colombian Roast Coffee 250g</span><span>₹840.00</span></div>
+            <div class="receipt-row"><span>1 × Organic Almond Milk 1L</span><span>₹210.00</span></div>
+            <div class="receipt-row"><span>3 × Dark Chocolate 100g</span><span>₹450.00</span></div>
+            <div class="receipt-row"><span>1 × Sparkling Water 1L</span><span>₹90.00</span></div>
+          </div>
+
+          <div class="receipt-dashed"></div>
+
+          <div class="receipt-row"><span>Subtotal</span><span>₹1,590.00</span></div>
+          <div class="receipt-row"><span>GST (5%)</span><span>₹79.50</span></div>
+          <div class="receipt-row"><span>Discount</span><span>−₹50.00</span></div>
+          <div class="receipt-total-row"><span>Total</span><span>₹1,619.50</span></div>
+          <div class="receipt-row" style="margin-top:10px;"><span>Paid via</span><span>Cash</span></div>
+
+          <div class="receipt-barcode" id="barcode"></div>
+          <p class="muted-line receipt-center">*10433*</p>
+
+          <div class="receipt-dashed"></div>
+          <p class="muted-line receipt-center">Thank you for shopping with us!</p>
+          <p class="muted-line receipt-center">Items can be exchanged within 7 days with a valid receipt.</p>
+
+          <div class="receipt-actions no-print">
+            <button class="btn btn-secondary btn-block" id="downloadReceiptBtn">Download</button>
+            <button class="btn btn-primary btn-block" onclick="window.print()">Print Receipt</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+<script>
+  // Generate a purely decorative barcode pattern from random bar widths.
+  const barcode = document.getElementById('barcode');
+  let bars = '';
+  for (let i = 0; i < 46; i++) {
+    const height = Math.random() > 0.5 ? '100%' : `${50 + Math.random() * 40}%`;
+    const width = Math.random() > 0.7 ? '4px' : '2.5px';
+    bars += `<span style="height:${height}; width:${width};"></span>`;
+  }
+  barcode.innerHTML = bars;
+
+  document.getElementById('downloadReceiptBtn').addEventListener('click', () => {
+    BrandVista.showToast('Preparing receipt for download…', 'info');
+  });
+</script>
+<script type="module">
+  import { protectPage } from './assets/js/neon-auth.js';
+  protectPage();
+</script>
+</body>
+</html>
