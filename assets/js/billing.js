@@ -239,6 +239,30 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     BrandVista.saveProducts(catalog);
+    
+    // Save order to backend database
+    const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    const tax = subtotal * GST_RATE;
+    const discount = parseFloat(discountValue.value) || 0;
+    const total = Math.max(0, subtotal + tax - discount);
+    
+    const orderData = {
+      order_number: orderId,
+      cashier: 'Riteesh B.',
+      items: cart,
+      subtotal: subtotal,
+      tax: tax,
+      discount: discount,
+      total: total,
+      payment_method: activePayment,
+      customer: 'Walk-in Customer'
+    };
+    
+    fetch('/api/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(orderData)
+    }).catch(err => console.log('Backend not available, order saved locally'));
 
     checkoutModal.classList.add('open');
   });

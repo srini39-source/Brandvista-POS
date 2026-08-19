@@ -296,7 +296,15 @@ const BrandVista = (() => {
   }
 
   function saveSettings(settings) {
+    // Save to localStorage first for offline functionality
     localStorage.setItem(STORAGE_SETTINGS_KEY, JSON.stringify(settings));
+    
+    // Also save to backend database if available
+    fetch('/api/settings', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(settings)
+    }).catch(err => console.log('Backend not available, using localStorage only'));
   }
 
   document.addEventListener('DOMContentLoaded', init);

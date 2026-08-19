@@ -104,8 +104,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ---------- Load saved settings on page init ---------- */
-  function loadSavedSettings() {
-    const saved = JSON.parse(localStorage.getItem('bv_settings') || '{}');
+  async function loadSavedSettings() {
+    let saved = {};
+    
+    // Try to load from backend first
+    try {
+      const response = await fetch('/api/settings');
+      if (response.ok) {
+        saved = await response.json();
+      }
+    } catch (err) {
+      console.log('Backend not available, using localStorage');
+    }
+    
+    // Fallback to localStorage if backend not available
+    if (Object.keys(saved).length === 0) {
+      saved = JSON.parse(localStorage.getItem('bv_settings') || '{}');
+    }
+    
     if (saved.storeName) document.getElementById('storeName').value = saved.storeName;
     if (saved.storePhone) document.getElementById('storePhone').value = saved.storePhone;
     if (saved.storeEmail) document.getElementById('storeEmail').value = saved.storeEmail;
