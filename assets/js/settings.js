@@ -45,19 +45,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---------- Logo upload (demo only — no backend) ---------- */
   document.getElementById('uploadLogoBtn').addEventListener('click', () => {
-    BrandVista.showToast('Logo upload requires a connected backend.', 'info');
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/png,image/svg+xml,image/jpeg';
+    input.addEventListener('change', (e) => {
+      if (e.target.files.length > 0) {
+        const file = e.target.files[0];
+        // For demo: show file name and size, but can't persist without backend
+        BrandVista.showToast(`Selected: ${file.name} (${(file.size / 1024).toFixed(1)}KB)\nNote: Saving requires backend integration.`, 'info');
+      }
+    });
+    input.click();
   });
 
   /* ---------- Backup / restore ---------- */
   document.getElementById('downloadBackupBtn').addEventListener('click', () => {
+    const pricesCheckbox = document.querySelector('input[type="checkbox"]');
     const backup = {
       exportedAt: new Date().toISOString(),
       storeName: document.getElementById('storeName').value,
       storePhone: document.getElementById('storePhone').value,
       storeEmail: document.getElementById('storeEmail').value,
       storeAddress: document.getElementById('storeAddress').value,
+      gstNumber: document.getElementById('gstNumber').value,
       currency: document.getElementById('currency').value,
       gstRate: document.getElementById('defaultGst').value,
+      pricesIncludeTax: pricesCheckbox ? pricesCheckbox.checked : true,
       receiptFooter: document.getElementById('receiptFooter').value,
     };
     const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
@@ -97,20 +110,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (saved.storePhone) document.getElementById('storePhone').value = saved.storePhone;
     if (saved.storeEmail) document.getElementById('storeEmail').value = saved.storeEmail;
     if (saved.storeAddress) document.getElementById('storeAddress').value = saved.storeAddress;
+    if (saved.gstNumber) document.getElementById('gstNumber').value = saved.gstNumber;
     if (saved.gstRate) document.getElementById('defaultGst').value = saved.gstRate;
     if (saved.currencySymbol) document.getElementById('currency').value = saved.currencySymbol;
     if (saved.receiptFooter) document.getElementById('receiptFooter').value = saved.receiptFooter;
+    // Restore checkbox state
+    const pricesCheckbox = document.querySelector('input[type="checkbox"]');
+    if (pricesCheckbox && typeof saved.pricesIncludeTax !== 'undefined') {
+      pricesCheckbox.checked = saved.pricesIncludeTax;
+    }
   }
 
   /* ---------- Save settings ---------- */
   document.getElementById('saveSettingsBtn').addEventListener('click', () => {
+    const pricesCheckbox = document.querySelector('input[type="checkbox"]');
     const settings = {
       storeName: document.getElementById('storeName').value,
       storePhone: document.getElementById('storePhone').value,
       storeEmail: document.getElementById('storeEmail').value,
       storeAddress: document.getElementById('storeAddress').value,
+      gstNumber: document.getElementById('gstNumber').value,
       currencySymbol: document.getElementById('currency').value,
       gstRate: document.getElementById('defaultGst').value,
+      pricesIncludeTax: pricesCheckbox ? pricesCheckbox.checked : true,
       receiptFooter: document.getElementById('receiptFooter').value,
     };
     localStorage.setItem('bv_settings', JSON.stringify(settings));

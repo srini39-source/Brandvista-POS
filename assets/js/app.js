@@ -277,8 +277,10 @@ const BrandVista = (() => {
     storePhone: '+91 98765 43210',
     storeEmail: 'hello@brandvistastore.com',
     storeAddress: '42 Market Street, Koramangala, Bengaluru, KA 560034',
+    gstNumber: '29ABCDE1234F1Z5',
     currencySymbol: '₹',
     gstRate: '5%',
+    pricesIncludeTax: true,
     receiptFooter: 'Thank you for shopping with us! Items can be exchanged within 7 days with a valid receipt.',
   };
 

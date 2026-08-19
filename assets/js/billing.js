@@ -222,7 +222,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   checkoutBtn.addEventListener('click', () => {
     if (cart.length === 0) return;
-    const orderId = Math.floor(10000 + Math.random() * 89999);
+    // Generate unique order ID using timestamp and random number
+    const timestamp = Date.now().toString().slice(-5);
+    const random = Math.floor(Math.random() * 9000) + 1000;
+    const orderId = parseInt(timestamp + random);
     const totalText = document.getElementById('sumTotal').textContent;
     document.getElementById('checkoutSummaryText').textContent = `Order #${orderId} · ${totalText} paid via ${activePayment}`;
 
@@ -241,10 +244,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('newSaleBtn').addEventListener('click', () => {
+    // Complete reset for new sale
     cart = [];
+    activePayment = 'Cash';
     discountValue.value = 0;
+    discountType.value = 'fixed';
+    
+    // Reset payment buttons
+    document.querySelectorAll('.payment-tab').forEach((tab) => {
+      tab.classList.remove('active');
+      if (tab.getAttribute('data-payment') === 'Cash') {
+        tab.classList.add('active');
+      }
+    });
+    
     // Refresh the GST rate from settings for the new sale
     GST_RATE = getGSTRate();
+    
+    // Re-render everything with fresh state
     renderCart();
     renderGrid(); // reflect the stock that checkout just deducted
     checkoutModal.classList.remove('open');
