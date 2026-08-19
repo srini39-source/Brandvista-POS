@@ -269,11 +269,40 @@ const BrandVista = (() => {
     });
   }
 
+  /* ---------- Settings storage ---------- */
+  const STORAGE_SETTINGS_KEY = 'bv_settings';
+
+  const DEFAULT_SETTINGS = {
+    storeName: 'BrandVista General Store',
+    storePhone: '+91 98765 43210',
+    storeEmail: 'hello@brandvistastore.com',
+    storeAddress: '42 Market Street, Koramangala, Bengaluru, KA 560034',
+    currencySymbol: '₹',
+    gstRate: '5%',
+    receiptFooter: 'Thank you for shopping with us! Items can be exchanged within 7 days with a valid receipt.',
+  };
+
+  function getSettings() {
+    const stored = localStorage.getItem(STORAGE_SETTINGS_KEY);
+    if (stored) {
+      try {
+        const parsed = JSON.parse(stored);
+        return { ...DEFAULT_SETTINGS, ...parsed };
+      } catch (e) { /* fall through to defaults below */ }
+    }
+    return DEFAULT_SETTINGS;
+  }
+
+  function saveSettings(settings) {
+    localStorage.setItem(STORAGE_SETTINGS_KEY, JSON.stringify(settings));
+  }
+
   document.addEventListener('DOMContentLoaded', init);
 
   return {
     showToast, formatCurrency, formatDate, openPanel, closePanel, toggleTheme,
     getCategories, saveCategories, populateCategorySelect,
     getProducts, saveProducts, computeStockStatus,
+    getSettings, saveSettings,
   };
 })();

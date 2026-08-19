@@ -53,6 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const backup = {
       exportedAt: new Date().toISOString(),
       storeName: document.getElementById('storeName').value,
+      storePhone: document.getElementById('storePhone').value,
+      storeEmail: document.getElementById('storeEmail').value,
+      storeAddress: document.getElementById('storeAddress').value,
       currency: document.getElementById('currency').value,
       gstRate: document.getElementById('defaultGst').value,
       receiptFooter: document.getElementById('receiptFooter').value,
@@ -87,10 +90,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  /* ---------- Load saved settings on page init ---------- */
+  function loadSavedSettings() {
+    const saved = JSON.parse(localStorage.getItem('bv_settings') || '{}');
+    if (saved.storeName) document.getElementById('storeName').value = saved.storeName;
+    if (saved.storePhone) document.getElementById('storePhone').value = saved.storePhone;
+    if (saved.storeEmail) document.getElementById('storeEmail').value = saved.storeEmail;
+    if (saved.storeAddress) document.getElementById('storeAddress').value = saved.storeAddress;
+    if (saved.gstRate) document.getElementById('defaultGst').value = saved.gstRate;
+    if (saved.currencySymbol) document.getElementById('currency').value = saved.currencySymbol;
+    if (saved.receiptFooter) document.getElementById('receiptFooter').value = saved.receiptFooter;
+  }
+
   /* ---------- Save settings ---------- */
   document.getElementById('saveSettingsBtn').addEventListener('click', () => {
     const settings = {
       storeName: document.getElementById('storeName').value,
+      storePhone: document.getElementById('storePhone').value,
+      storeEmail: document.getElementById('storeEmail').value,
+      storeAddress: document.getElementById('storeAddress').value,
       currencySymbol: document.getElementById('currency').value,
       gstRate: document.getElementById('defaultGst').value,
       receiptFooter: document.getElementById('receiptFooter').value,
@@ -98,4 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('bv_settings', JSON.stringify(settings));
     BrandVista.showToast('Settings saved successfully.', 'success');
   });
+
+  /* Load settings when page initializes */
+  loadSavedSettings();
 });

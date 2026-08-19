@@ -6,7 +6,22 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const GST_RATE = 0.05;
+  // Get current GST rate from settings, fallback to 5% if not set
+  function getGSTRate() {
+    try {
+      const settings = JSON.parse(localStorage.getItem('bv_settings') || '{}');
+      if (settings.gstRate) {
+        // Parse the percentage value (e.g., "5%" -> 5 -> 0.05)
+        const numValue = parseFloat(settings.gstRate.replace('%', ''));
+        return isNaN(numValue) ? 0.05 : numValue / 100;
+      }
+    } catch (e) {
+      /* fall through to default */
+    }
+    return 0.05; // Default to 5% if settings not found
+  }
+
+  let GST_RATE = getGSTRate();
 
   /* ---------- Catalog ----------
      Pulled fresh from the same localStorage-backed store that the Products,
@@ -228,6 +243,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('newSaleBtn').addEventListener('click', () => {
     cart = [];
     discountValue.value = 0;
+    // Refresh the GST rate from settings for the new sale
+    GST_RATE = getGSTRate();
     renderCart();
     renderGrid(); // reflect the stock that checkout just deducted
     checkoutModal.classList.remove('open');
